@@ -1,48 +1,51 @@
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
+import {addCash, getCash} from './store/cashReducer.js'
 
 function App() {
 
   const dispatch = useDispatch()
   const cash = useSelector(state => state.cash.cash)
-  const clients = useSelector(state => state.client.clients)
-  console.log(clients)
+  // const clients = useSelector(state => state.client.clients)
 
-  const addCash = (cash) => {
-    dispatch({ type: "ADD", payload: cash, })
+
+  const add = (cash) => {
+    dispatch(addCash(cash))
   }
 
-  const getCash = (cash) => {
-    dispatch({ type: "GET", payload: cash, })
+  const get = (cash) => {
+    dispatch(getCash(cash))
   }
 
-  const addClient = (name) => {
-    const client = {
-      name,
-      id: Date.now()
-    }
-    dispatch({ type: "ADD_CLIENT", payload: client })
-  }
+  // const addClient = (name) => {
+  //   const client = {
+  //     name,
+  //     id: Date.now()
+  //   }
+  //   dispatch({ type: "ADD_CLIENT", payload: client })
+  // }
 
-  const getClient = () => {
-
-  }
+  // const delClient = (client) => {
+  //   dispatch({ type: "DEL_CLIENT", payload: client.id })
+  // }
 
 
   return (
     <div className="App">
       <div>Счет:{ cash }</div>
-      <button className="Button" onClick={ () => addCash(Number(prompt())) }>Внести на счет</button>
-      <button className="Button" onClick={ () => getCash(Number(prompt())) }>Снять со счета</button>
-      <button className="Button" onClick={ () => addClient(prompt()) }>Добавить клиента</button>
-      {/* <button className="Button" onClick={ () => getClient(prompt()) }>Удалить клиента</button> */ }
+      <div>
+        <button className="button button_cash" onClick={ () => add(Number(prompt())) }>+</button>
+        <button className="button button_cash" onClick={ () => get(Number(prompt())) }>-</button>
+      </div>
+      {/* <button className="button" onClick={ () => addClient(prompt()) }>Добавить клиента</button>
+
       { clients.length > 0 ?
         <div>
           { clients.map(client =>
-            <div>{client.name}</div>
-          )}
+            <button className="button button_del" onClick={ () => delClient(client) }>{ client.name }</button>
+          ) }
         </div>
-        : <div>База клиентов пустая!</div> }
+        : <div>База клиентов пустая!</div> } */}
     </div>
   );
 }

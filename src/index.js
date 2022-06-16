@@ -1,13 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { store } from './store/index'
-import { Provider } from "react-redux";
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 
+import App from './App.js';
+import store from './store/index.js';
 
-ReactDOM.render(
-  <Provider store={ store }>
+const mountNode = document.getElementById('container');
+const root = ReactDOM.createRoot(mountNode);
+// Оборачиваем приложение в Provider
+// и передаем в него хранилище
+root.render(
+  <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
-)
+);

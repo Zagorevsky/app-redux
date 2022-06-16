@@ -8,9 +8,8 @@ export const clientReducer = (state = defaultState, action) => {
     case "ADD_CLIENT":
       return { ...state, clients: [...state.clients, action.payload] }
 
-    case "DEL":
-      return { ...state, clients: state.cash - action.payload }
-
+    case "DEL_CLIENT":
+      return { ...state, clients: state.clients.filter(client => client.id !== action.payload) }
     default:
       return state
   }
