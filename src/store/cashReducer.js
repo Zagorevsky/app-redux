@@ -15,5 +15,4 @@ const cashSlice = createSlice({
 
 export const { addCash, getCash } = cashSlice.actions;
 
-// По умолчанию экспортируется редьюсер сгенерированный слайсом
 export default cashSlice.reducer;

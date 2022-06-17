@@ -1,16 +1,18 @@
+import { createSlice } from "@reduxjs/toolkit";
 
-const defaultState = {
-  clients: []
-}
+const clientSlice = createSlice({
+  name: "clients",
+  initialState: { clients: [] },
+  reducers: {
+    addClient(state, action) {
+      state.clients.push(action.payload);
+    },
+    getClient(state, action) {
+      state.clients.pop();
+    },
+  },
+});
 
-export const clientReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case "ADD_CLIENT":
-      return { ...state, clients: [...state.clients, action.payload] }
+export const { addClient, getClient } = clientSlice.actions;
 
-    case "DEL_CLIENT":
-      return { ...state, clients: state.clients.filter(client => client.id !== action.payload) }
-    default:
-      return state
-  }
-}
+export default clientSlice.reducer;
