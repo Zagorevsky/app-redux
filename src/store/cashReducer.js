@@ -1,21 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const cashSlice = createSlice({
-  name: 'cash',
-  cash: 0,
-  // Редьюсеры в слайсах мутируют состояние и ничего не возвращают наружу
+  name: "cash",
+  initialState: { cash: 0 },
   reducers: {
-    addCash: (state, action) => {
-      state.cash += action.payload;
+    addCash(state, action) {
+      state.cash += action.payload.cash;
     },
-    getCash: (state, action) => {
-      state.cash -= action.payload;
+    getCash(state, action) {
+      state.cash -= action.payload.cash;
     },
   },
 });
 
-export const { addCash, getCash} = cashSlice.actions;
+export const { addCash, getCash } = cashSlice.actions;
 
 // По умолчанию экспортируется редьюсер сгенерированный слайсом
 export default cashSlice.reducer;
